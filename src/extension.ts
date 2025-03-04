@@ -29,12 +29,19 @@ export function activate(context: vscode.ExtensionContext) {
       (editor, edit) => numberedListFromSelection(editor, edit)
     );
 
+  const cursorToallMatchesDisposable =
+    vscode.commands.registerTextEditorCommand(
+      "myvsc.cursor_to_all_matches",
+      (editor) => cursorToAllMatches(editor)
+    );
+
   context.subscriptions.push(
     unquoteDisposable,
     quoteDisposable,
     reverseDisposable,
     capitalizeDisposable,
-    numberedListFromSelectionDisposable
+    numberedListFromSelectionDisposable,
+    cursorToallMatchesDisposable
   );
 }
 
@@ -123,5 +130,25 @@ function numberedListFromSelection(
   });
 }
 
-// This method is called when your extension is deactivated
+function cursorToAllMatches(editor: vscode.TextEditor) {
+  if (editor.selection.isEmpty) {
+    return;
+  }
+
+  const text = editor.document.getText();
+  const regex = new RegExp(editor.document.getText(editor.selection), "g");
+
+  const matches = [...text.matchAll(regex)];
+  const positions = matches.map((match) =>
+    editor.document.positionAt(match.index)
+  );
+
+  if (positions.length === 0) {
+    vscode.window.showInformationMessage("No matches found.");
+    return;
+  }
+
+  editor.selections = positions.map((pos) => new vscode.Selection(pos, pos));
+}
+
 export function deactivate() {}

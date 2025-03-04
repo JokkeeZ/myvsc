@@ -16,3 +16,4 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add command to append quotes around selection `myvsc.quote`.
 - Add command to reverse selected text `myvsc.reverse`.
 - Add command to remove quotes from selection `myvsc.unquote`
+- Add command that places cursor at all matches based on selection `myvsc.cursor_to_all_matches`.
