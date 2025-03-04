@@ -123,9 +123,7 @@ function numberedListFromSelection(
     const text = editor.document.getText(selection);
     const lines = text.split("\n");
 
-    let i = 1;
-    const modified = lines.map((l) => `${i++}) ` + l);
-
+    const modified = lines.map((line, idx) => `${idx + 1}) ` + line);
     edit.replace(selection, modified.join("\n"));
   });
 }
