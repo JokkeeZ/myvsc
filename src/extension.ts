@@ -4,34 +4,34 @@ export function activate(context: vscode.ExtensionContext) {
   console.log("[myvsc] activated.");
 
   const unquoteDisposable = vscode.commands.registerTextEditorCommand(
-    "myvsc.unquote",
+    "myvsc.removeQuotesFromSelection",
     (editor, edit) => removeQuotesFromSelection(editor, edit)
   );
 
   const quoteDisposable = vscode.commands.registerTextEditorCommand(
-    "myvsc.quote",
+    "myvsc.wrapSelectionInQuotes",
     (editor, edit) => wrapSelectionInQuotes(editor, edit)
   );
 
   const reverseDisposable = vscode.commands.registerTextEditorCommand(
-    "myvsc.reverse",
+    "myvsc.reverseSelectionText",
     (editor, edit) => reverseSelectionText(editor, edit)
   );
 
   const capitalizeDisposable = vscode.commands.registerTextEditorCommand(
-    "myvsc.capitalize",
+    "myvsc.capitalizeSelectionWords",
     (editor, edit) => capitalizeSelectionWords(editor, edit)
   );
 
   const numberedListFromSelectionDisposable =
     vscode.commands.registerTextEditorCommand(
-      "myvsc.numbered_list",
+      "myvsc.numberedListFromSelection",
       (editor, edit) => numberedListFromSelection(editor, edit)
     );
 
   const cursorToallMatchesDisposable =
     vscode.commands.registerTextEditorCommand(
-      "myvsc.cursor_to_all_matches",
+      "myvsc.cursorToAllMatches",
       (editor) => cursorToAllMatches(editor)
     );
 

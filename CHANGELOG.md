@@ -11,9 +11,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 
 - Initial release
-- Add command to capitalize words within selection `myvsc.capitalize`.
-- Add command to generate numbered list from selected lines `myvsc.numbered_list`.
-- Add command to append quotes around selection `myvsc.quote`.
-- Add command to reverse selected text `myvsc.reverse`.
-- Add command to remove quotes from selection `myvsc.unquote`
-- Add command that places cursor at all matches based on selection `myvsc.cursor_to_all_matches`.
+- Add command to capitalize words within selection `myvsc.capitalizeSelectionWords`.
+- Add command to generate numbered list from selected lines `myvsc.numberedListFromSelection`.
+- Add command to append quotes around selection `myvsc.wrapSelectionInQuotes`.
+- Add command to reverse selected text `myvsc.reverseSelectionText`.
+- Add command to remove quotes from selection `myvsc.removeQuotesFromSelection`
+- Add command that places cursor at all matches based on selection `myvsc.cursorToAllMatches`.

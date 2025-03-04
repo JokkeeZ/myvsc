@@ -23,29 +23,39 @@
   "contributes": {
     "commands": [
       {
-        "command": "myvsc.unquote",
-        "title": "myvsc: Unquote selection(s)"
+        "command": "myvsc.removeQuotesFromSelection",
+        "title": "Remove quotes from selection(s)",
+        "category": "myvsc",
+        "shortTitle": "Remove quotes"
       },
       {
-        "command": "myvsc.quote",
-        "title": "myvsc: Quote selection(s)"
+        "command": "myvsc.wrapSelectionInQuotes",
+        "title": "Wrap selection(s) in quotes",
+        "category": "myvsc",
+        "shortTitle": "Wrap selection in quotes"
       },
       {
-        "command": "myvsc.reverse",
-        "title": "myvsc: Reverse selection(s)"
+        "command": "myvsc.reverseSelectionText",
+        "title": "Reverse selection contents",
+        "category": "myvsc",
+        "shortTitle": "Reverse selection"
       },
       {
-        "command": "myvsc.capitalize",
-        "title": "myvsc: Capitalize selection(s)"
+        "command": "myvsc.capitalizeSelectionWords",
+        "title": "Capitalize selection(s) words",
+        "category": "myvsc",
+        "shortTitle": "Capitalize selection"
       },
       {
-        "command": "myvsc.numbered_list",
-        "title": "myvsc: Make numbered list from selection(s)",
+        "command": "myvsc.numberedListFromSelection",
+        "title": "Make numbered list from selection(s)",
+        "category": "myvsc",
         "shortTitle": "Numbered list from selection"
       },
       {
-        "command": "myvsc.cursor_to_all_matches",
-        "title": "myvsc: Add cursor to all matches",
+        "command": "myvsc.cursorToAllMatches",
+        "title": "Place cursor before all matches",
+        "category": "myvsc",
         "shortTitle": "Cursor to all matches"
       }
     ]
