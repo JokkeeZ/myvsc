@@ -1,0 +1,67 @@
+{
+  "name": "myvsc",
+  "displayName": "My VS Code",
+  "description": "Custom stuff for my personal VS Code",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jokkeez/myvsc"
+  },
+  "publisher": "Joel",
+  "author": {
+    "name": "Joel",
+    "url": "https://github.com/jokkeez"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.97.0"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "myvsc.unquote",
+        "title": "myvsc: Unquote selection(s)"
+      },
+      {
+        "command": "myvsc.quote",
+        "title": "myvsc: Quote selection(s)"
+      },
+      {
+        "command": "myvsc.reverse",
+        "title": "myvsc: Reverse selection(s)"
+      },
+      {
+        "command": "myvsc.capitalize",
+        "title": "myvsc: Capitalize selection(s)"
+      },
+      {
+        "command": "myvsc.numbered_list",
+        "title": "myvsc: Make numbered list from selection(s)",
+        "shortTitle": "Numbered list from selection"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.97.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "eslint": "^9.21.0",
+    "typescript": "^5.7.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
