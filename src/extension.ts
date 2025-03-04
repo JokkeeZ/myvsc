@@ -121,10 +121,12 @@ function numberedListFromSelection(
     }
 
     const text = editor.document.getText(selection);
-    const lines = text.split("\n");
+
+    const eol = eolToString(editor.document.eol);
+    const lines = text.split(eol);
 
     const modified = lines.map((line, idx) => `${idx + 1}) ` + line);
-    edit.replace(selection, modified.join("\n"));
+    edit.replace(selection, modified.join(eol));
   });
 }
 
@@ -147,6 +149,10 @@ function cursorToAllMatches(editor: vscode.TextEditor) {
   }
 
   editor.selections = positions.map((pos) => new vscode.Selection(pos, pos));
+}
+
+function eolToString(eol: vscode.EndOfLine): string {
+  return eol === vscode.EndOfLine.LF ? "\n" : "\r\n";
 }
 
 export function deactivate() {}
