@@ -1,32 +1,32 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('[myvsc] activated.');
+  console.log("[myvsc] activated.");
 
   const unquoteDisposable = vscode.commands.registerTextEditorCommand(
     "myvsc.unquote",
-    (editor, edit) => unquoteSelection(editor, edit)
+    (editor, edit) => removeQuotesFromSelection(editor, edit)
   );
 
   const quoteDisposable = vscode.commands.registerTextEditorCommand(
     "myvsc.quote",
-    (editor, edit) => quoteSelection(editor, edit)
+    (editor, edit) => wrapSelectionInQuotes(editor, edit)
   );
 
   const reverseDisposable = vscode.commands.registerTextEditorCommand(
     "myvsc.reverse",
-    (editor, edit) => reverseSelection(editor, edit)
+    (editor, edit) => reverseSelectionText(editor, edit)
   );
 
   const capitalizeDisposable = vscode.commands.registerTextEditorCommand(
     "myvsc.capitalize",
-    (editor, edit) => capitalizeSelection(editor, edit)
+    (editor, edit) => capitalizeSelectionWords(editor, edit)
   );
 
   const numberedListFromSelectionDisposable =
     vscode.commands.registerTextEditorCommand(
       "myvsc.numbered_list",
-      (editor, edit) => numeredListFromSelection(editor, edit)
+      (editor, edit) => numberedListFromSelection(editor, edit)
     );
 
   context.subscriptions.push(
@@ -38,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 }
 
-function unquoteSelection(
+function removeQuotesFromSelection(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
@@ -57,7 +57,7 @@ function unquoteSelection(
   });
 }
 
-function quoteSelection(
+function wrapSelectionInQuotes(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
@@ -73,7 +73,7 @@ function quoteSelection(
   });
 }
 
-function reverseSelection(
+function reverseSelectionText(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
@@ -87,7 +87,7 @@ function reverseSelection(
   });
 }
 
-function capitalizeSelection(
+function capitalizeSelectionWords(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
@@ -104,7 +104,7 @@ function capitalizeSelection(
   });
 }
 
-function numeredListFromSelection(
+function numberedListFromSelection(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
