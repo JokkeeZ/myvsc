@@ -49,85 +49,74 @@ function removeQuotesFromSelection(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
-  editor.selections.map((selection) => {
-    if (selection.isEmpty) {
-      return;
-    }
+  editor.selections
+    .filter((s) => !s.isEmpty)
+    .map((selection) => {
+      const text = editor.document.getText(selection);
+      const unquoted = text
+        .replaceAll("'", "")
+        .replaceAll('"', "")
+        .replaceAll("`", "");
 
-    const text = editor.document.getText(selection);
-    const unquoted = text
-      .replaceAll("'", "")
-      .replaceAll('"', "")
-      .replaceAll("`", "");
-
-    edit.replace(selection, unquoted);
-  });
+      edit.replace(selection, unquoted);
+    });
 }
 
 function wrapSelectionInQuotes(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
-  editor.selections.map((selection) => {
-    if (selection.isEmpty) {
-      return;
-    }
+  editor.selections
+    .filter((s) => !s.isEmpty)
+    .map((selection) => {
+      const text = editor.document.getText(selection);
+      const c = text.includes("'") ? '"' : "'";
 
-    const text = editor.document.getText(selection);
-    const c = text.includes("'") ? '"' : "'";
-
-    edit.replace(selection, c + text + c);
-  });
+      edit.replace(selection, c + text + c);
+    });
 }
 
 function reverseSelectionText(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
-  editor.selections.map((selection) => {
-    if (selection.isEmpty) {
-      return;
-    }
-
-    const text = editor.document.getText(selection);
-    edit.replace(selection, [...text].reverse().join(""));
-  });
+  editor.selections
+    .filter((s) => !s.isEmpty)
+    .map((selection) => {
+      const text = editor.document.getText(selection);
+      edit.replace(selection, [...text].reverse().join(""));
+    });
 }
 
 function capitalizeSelectionWords(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
-  editor.selections.map((selection) => {
-    if (selection.isEmpty) {
-      return;
-    }
-
-    const text = editor.document.getText(selection);
-    edit.replace(
-      selection,
-      text.replace(/\b\w/g, (c) => c.toUpperCase())
-    );
-  });
+  editor.selections
+    .filter((s) => !s.isEmpty)
+    .map((selection) => {
+      const text = editor.document.getText(selection);
+      edit.replace(
+        selection,
+        text.replace(/\b\w/g, (c) => c.toUpperCase())
+      );
+    });
 }
 
 function numberedListFromSelection(
   editor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
 ) {
-  editor.selections.map((selection) => {
-    if (selection.isEmpty) {
-      return;
-    }
+  editor.selections
+    .filter((s) => !s.isEmpty)
+    .map((selection) => {
+      const text = editor.document.getText(selection);
 
-    const text = editor.document.getText(selection);
+      const lines = text.split("\n");
 
-    const eol = eolToString(editor.document.eol);
-    const lines = text.split(eol);
-
-    const modified = lines.map((line, idx) => `${idx + 1}) ` + line);
-    edit.replace(selection, modified.join(eol));
-  });
+      const modified = lines.map((line, idx) => `${idx + 1}) ` + line);
+      edit.replace(selection, modified.join("\n"));
+    });
 }
 
 function cursorToAllMatches(editor: vscode.TextEditor) {
@@ -149,10 +138,6 @@ function cursorToAllMatches(editor: vscode.TextEditor) {
   }
 
   editor.selections = positions.map((pos) => new vscode.Selection(pos, pos));
-}
-
-function eolToString(eol: vscode.EndOfLine): string {
-  return eol === vscode.EndOfLine.LF ? "\n" : "\r\n";
 }
 
 export function deactivate() {}
