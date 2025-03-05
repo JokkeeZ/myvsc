@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.2] - 2025-03-05
+
+- Basic tests for commands
+
 ## [0.0.1] - 2025-03-04
 
 ### Added
