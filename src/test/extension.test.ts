@@ -5,9 +5,7 @@ suite("Extension Test Suite", () => {
   let editor: vscode.TextEditor;
 
   setup(async () => {
-    await vscode.extensions.getExtension("joel.myvsc")!.activate();
-
-    require("path").dirname("asd");
+    await vscode.extensions.getExtension("jokkeez.myvsc")!.activate();
 
     const doc = await vscode.workspace.openTextDocument({
       content: [
